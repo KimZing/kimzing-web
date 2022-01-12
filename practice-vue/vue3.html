@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Vue3练习</title>
+		<!-- 防抖库 -->
+		<script src="https://unpkg.com/lodash@4.17.20/lodash.min.js"></script>
+		<script type="text/javascript" src="vue3.js"></script>
+		<script type="text/javascript" src="addPerson.js"></script>
+	</head>
+	<body>
+		<!-- 插值 扩展: 可以进行运算,每个绑定都只能包含单个表达式,number + 1,ok ? 'YES' : 'NO', message.split('').reverse().join('') -->
+		<div id="counter">{{counter}}</div>
+		<!-- 值绑定v-bind缩写:   扩展:v-once仅绑定一次， 渲染html则使用v-html-->
+		<div id="bind"><span :title="message">鼠标悬停查看提示信息</span></div>
+		<!-- 双向绑定  v-model.number数字     v-model.trim="msg"去除首尾空白字符-->
+		<div id="model">
+			<p>您的姓名{{name}}</p><input type="text" v-model="name"></input>
+		</div>
+		<!-- 事件 v-on缩写@ -->
+		<!-- 1.只写方法名  2. 带参数 say('hi') 3. 传递事件warn('Form cannot be submitted yet.', $event) 4.多事件处理器 one($event), two($event)-->
+		<!-- .stop阻止事件继续传播 .prevent提交事件不重载页面 .capture事件捕获然后内部处理 .self只处理自身触发的事件 .once只触发一次 .passive滚动事件 -->
+		<!-- <input @keyup.enter="submit" /> .enter .tab .delete (捕获“删除”和“退格”键) .esc .space .up .down .left .right .ctrl .alt .shift .meta-->
+		<!-- 事件处理程序中可以有多个方法，这些方法由逗号运算符分隔： -->
+		<div id="event">
+			<p>{{message}}</p> <button @click="reverse">翻转</button>
+		</div>
+		<!-- 条件判断 扩展: v-show也可以控制隐藏，但仍在dom中-->
+		<!-- v-if 的优先级比 v-for 更高，这意味着 v-if 将没有权限访问 v-for 里的变量： -->
+		<div id="if">
+			<p v-if="see === '1'">you see 1</p>
+			<p v-else-if="see === '2'">you see 2</p>
+			<p v-else>you see nothing</p>
+		</div>
+		<!-- 循环 也可以用 v-for 来遍历一个对象 value in myObject   (value, name) in myObject   (value, name, index) in myObject -->
+		<!-- 为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 key attribute： -->
+		<div id="for">
+			<ul>
+				<li v-for="item, index in list" :key="item">{{item}}-{{index}}</li>
+			</ul>
+		</div>
+		<!-- 自定义组件 -->
+		<div id="component">
+			<ul>
+				<todo-item v-for="item,index in todoList" :item="item" :key="item.id"></todo-item>
+			</ul>
+		</div>
+		<!-- 声明周期 -->
+		<!-- beforeCreate created beforeMount mounted beforeUpdate updated beforeUnmount unmounted -->
+		<!-- 防抖功能 -->
+		<div id="debounce">
+			<div v-for="item in messages">
+				{{item}}
+			</div>
+			<button @click="click">防抖点击</button>
+		</div>
+		<!-- 计算属性 会自动侦听变化, 可以有set get方法，反向设置-->
+		<div id="computed">
+			<input type="text" v-model="first">
+			<input type="text" v-model="second">
+			<p>{{total}}</p>
+			<!-- 演示get set方法 -->
+			<input type="text" v-model="province">
+			<input type="text" v-model="city">
+			<input type="text" v-model="address">
+		</div>
+		<!-- 侦听器 -->
+		<div id="watch">
+			{{newQ}}-{{oldQ}}
+			<input type="text" v-model="question" />
+		</div>
+		<!-- 样式 -->
+		<div id="style">
+			<!-- 渲染结果:<div class="active"></div> -->
+			<div :class="{active: isActive,'text-danger': hasError}"></div>
+			<!-- 和计算属性结合 -->
+			<div :class="classObject"></div>
+			<!-- 数组语法  直接赋值 -->
+			<div :class="[activeClass]"></div>
+			<div :class="[{ active: isActive }, errorClass]"></div>
+			<!-- 内联样式 CSS property 名可以用驼峰式 (camelCase) 或短横线分隔 (kebab-case，记得用引号括起来) 来命名-->
+			<div :style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+			<div :style="styleObject"></div>
+		</div>
+
+		<!-- Vue3组合式API   注意：只有修改对应的引用时，才会触发更新-->
+		<!-- 		
+		// shallowReactive shallowRef单层代理浅拷贝   triggerRef主动触发
+		// reactive只支持json和数组，其他对象要重新赋值
+		// ref包装时，多加了一层value。
+		// toRaw 返回Proxy中的原始对象，不需要更新界面的操作，可以使用toRaw进行修改。而ref、reactive每次改动都会改动界面。
+		// 注意ref获取原始数据时，需要使用toRaw(state.value)
+		// markRaw 标记永远不想被追踪
+		// proxy和对象之间是引用关系，修改对象 proxy中的也会变 
+		// toRef  把部分内容变成响应式数据  toRef(obj, "name")
+		// ref是深拷贝，修改数据不会影响之前的原始数据，  toRef浅拷贝，且不会更新界面
+		// customRef 自定义ref，  
+		// 以前的ref属性  现在也是生命一个同名变量
+		// 以前的生命周期通过函数导入
+		// readonly创建递归只读数据           shallowReadonly    isReadonly 
+		-->
+
+
+		<!-- 属性绑定-ref 基本属性和对象都可以使用，但是对象的方法无法调用。 ref是深拷贝，reactive是浅拷贝-->
+		<div id="vue3-ref">
+			<p @click="addCount">{{count}}</p>
+			<p>{{persons}}</p>
+			<button @click="addPerson">添加person会报错，但使用reactive就不会</button>
+		</div>
+
+		<!-- 属性绑定-reactive  只适用json对象和数组-->
+		<div id="vue3-reactive">
+			<p>{{persons}}</p>
+			<button @click="addPerson">添加person</button>
+		</div>
+
+		<!-- 示例：抽离setup中的函数，可以写在独立的文件，也可以抽离到外部函数 -->
+		<div id="setup-demo">
+			<ul>
+				<li v-for="(item,index) in state.persons" @click="addPerson">{{item.name}} -- {{item.age}}</li>
+			</ul>
+		</div>
+
+		<!-- 生命周期  watch  computed-->
+		<div id="life">
+			<p @click="addCounter">{{counter}}--{{doubleCounter}}</p>
+		</div>
+	</body>
+	<script>
+		Vue.createApp({
+			setup(props,context) {
+				let counter = Vue.ref(0)
+				Vue.onMounted(() => {
+					console.log("已经挂载")
+				})
+
+
+				Vue.watch(counter, (newVal, oldVar) => {
+					console.log("new counter is " + counter.value)
+				})
+				
+				function addCounter() {
+					counter.value++
+				}
+
+				let doubleCounter = Vue.computed(() => counter.value * 2)
+				return {counter,doubleCounter, addCounter}
+			}
+		}).mount("#life")
+
+		Vue.createApp({
+			setup() {
+				let {state, addPerson} = useAddPerson()
+				console.log(state)
+				return {state, addPerson}
+			}
+		}).mount("#setup-demo")
+
+		Vue.createApp({
+			setup() {
+				let persons = Vue.reactive([{name: "kimzing"}])
+				function addPerson() {
+					persons.push({name:"zing"})
+				}
+				return {persons,addPerson}
+			}
+		}).mount("#vue3-reactive")
+
+
+		Vue.createApp({
+			setup() {
+				let count = Vue.ref(3)
+				function addCount() {
+					count.value += 1
+				}
+
+				let persons = Vue.ref([{name: "kimzing"}])
+				function addPerson() {
+					persons.value = persons.value.push({name:"zing"})
+				}
+				return {count,addCount,persons,addPerson}
+			}
+		})
+		.mount("#vue3-ref")
+
+		Vue.createApp({
+			data() {
+				return {
+					isActive: true,
+					hasError: false,
+					error: null,
+					activeClass: 'active',
+					errorClass: 'text-danger',
+					activeColor: 'red',
+					fontSize: 30,
+					styleObject: {
+						color: 'red',
+						fontSize: '13px'
+					}
+				}
+			},
+			computed: {
+				classObject() {
+					return {
+						active: this.isActive && !this.error,
+						'text-danger': this.error && this.error.type === 'fatal'
+					}
+				}
+			}
+		}).mount("#style")
+
+		Vue.createApp({
+			data() {
+				return {
+					newQ: "",
+					oldQ: "",
+					question: ''
+				}
+			},
+			watch: {
+				question(newQ, oldQ) {
+					this.newQ = newQ;
+					this.oldQ = oldQ;
+				}
+			}
+		}).mount("#watch")
+
+		Vue.createApp({
+			data() {
+				return {
+					first: "kim",
+					second: "zing",
+					province: "江苏省",
+					city: "南京市"
+				}
+			},
+			computed: {
+				total() {
+					return this.first + this.second
+				},
+				address: {
+					get() {
+						return this.province + " " + this.city
+					},
+					set(newVal) {
+						this.province = newVal.split(" ")[0]
+						this.city = newVal.split(" ")[1]
+					}
+				}
+			}
+		}).mount("#computed")
+
+		Vue.createApp({
+			data() {
+				return {
+					messages: []
+				}
+			},
+			// 保证在组件中不会共享同一个防抖
+			created() {
+				// 用 Lodash 的防抖函数
+				this.click = _.debounce(this.click, 500)
+			},
+			unmounted() {
+				// 移除组件时，取消定时器
+				this.click.cancel()
+			},
+			methods: {
+				click() {
+					this.messages.push("点击事件")
+				}
+			}
+		}).mount("#debounce")
+
+		const Component = {
+			data() {
+				return {
+					todoList: [{
+						id: 1,
+						message: "吃饭"
+					}, {
+						id: 2,
+						message: "睡觉"
+					}, {
+						id: 3,
+						message: "打豆豆"
+					}]
+				}
+			},
+			components: {
+				TodoItem: {
+					props: ['item'],
+					template: `<li>{{item.message}}</li>`
+				}
+			}
+		}
+		Vue.createApp(Component).mount("#component")
+
+		const For = {
+			data() {
+				return {
+					list: ["orange", "apple", "coffee"]
+				}
+			}
+		}
+		Vue.createApp(For).mount("#for")
+
+		const If = {
+			data() {
+				return {
+					see: '3'
+				}
+			}
+		}
+		Vue.createApp(If).mount("#if")
+
+
+		const EventHandle = {
+			data() {
+				return {
+					message: "Hello Vue3"
+				}
+			},
+			methods: {
+				reverse() {
+					this.message = this.message.split("").reverse().join("")
+				}
+			}
+		}
+		Vue.createApp(EventHandle).mount("#event")
+
+		const Model = {
+			data() {
+				return {
+					name: "KimZing"
+				}
+			}
+		}
+		Vue.createApp(Model).mount("#model")
+
+		const Bind = {
+			data() {
+				return {
+					message: "this is message"
+				}
+			}
+		}
+		Vue.createApp(Bind).mount("#bind")
+
+		const Counter = {
+			data() {
+				return {
+					counter: 1
+				}
+			},
+			mounted() {
+				setInterval(() => this.counter = this.counter + 1, 1000)
+			}
+		}
+		Vue.createApp(Counter).mount("#counter")
+	</script>
+</html>

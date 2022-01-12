@@ -1,0 +1,105 @@
+html {
+  height: 100%;
+}
+body {
+  background-color: black;
+  display: flex;
+  /* 这里不会居中显示，是因为body的高度没有设置，只有设置高度才可以,注意还要设置html的高度 */
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  height: 100%;
+}
+
+.pip {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  /* 设置为块级元素 */
+  display: block;
+  background: black;
+  margin: 5px 5px;
+}
+
+.first-face {
+  width: 100px;
+  height: 100px;
+  margin: 10px 10px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  /* 主轴：水平对齐 */
+  justify-content: center;
+  /* 交叉轴：垂直对齐 */
+  align-items: center;
+}
+
+.second-face {
+  width: 100px;
+  height: 100px;
+  margin: 10px 10px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.second-face span:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+.third-face {
+  width: 100px;
+  height: 100px;
+  margin: 10px 10px;
+  border-radius: 10%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.third-face span:nth-of-type(2) {
+  align-self: center;
+}
+
+.third-face span:nth-of-type(3) {
+  align-self: flex-end;
+}
+
+.fourth-face, .sixth-face {
+  width: 100px;
+  height: 100px;
+  margin: 10px 10px;
+  background-color: white;
+  border-radius: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fourth-face .column, .sixth-face .column {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+.fifth-face {
+  width: 100px;
+  height: 100px;
+  margin: 10px 10px;
+  background-color: white;
+  border-radius: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fifth-face .column:nth-of-type(odd) {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+.fifth-face .column:nth-of-type(even) {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}

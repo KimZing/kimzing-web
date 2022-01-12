@@ -1,0 +1,46 @@
+body {
+  display: flex;
+  /* 行内元素*/
+  display: inline-flex;
+  /*   
+  排列方向, 这个很好理解，就是水平还是垂直  row | row-reverse | column | column-reverse;
+  flex-direction: row;
+  是否允许折行，nowrap | wrap | wrap-reverse;
+  flex-wrap: wrap; 
+  与
+  flex-flow: row wrap;
+  等同
+  */
+  flex-flow: row wrap;
+  /* 对齐方式 属性定义了项目在主轴上的对齐方式。就是居中对齐，还是靠左等 flex-start | flex-end | center | space-between | space-around;*/
+  /* justify-content: space-between; */
+  /* 在交叉轴上如何对其 flex-start | flex-end | center | baseline | stretch;*/
+  align-items:  flex-start;
+  /*多根轴线   在整体上的对其方式*/
+  align-content: center;
+  background-color: blanchedalmond;
+}
+
+.box {
+  height: 200px;
+  width: 300px;
+  background: coral;
+  border: 1px blue solid;
+}
+
+.box2 {
+  height: 150px;
+  width: 300px;
+  background: orange;
+  border: 1px blue solid;
+}
+
+.order1 {
+  order: -1;
+  /*放大比例，占据剩余空间*/
+  flex-grow: 1;
+  /*缩小比例， 空间不足时，该项目缩小*/
+  flex-shrink: 1;
+  /*独立的对其方式*/
+  align-self: flex-end;
+}
