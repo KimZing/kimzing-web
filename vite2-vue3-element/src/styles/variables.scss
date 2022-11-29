@@ -1,0 +1,21 @@
+// 全局配置，需要在vite.config.ts中进行以下配置
+/* css: {
+  preprocessorOptions: {
+    scss: {
+      additionalData: `@import "@styles/variables.scss";`
+    }
+  }
+} */
+
+// 局部配置
+/* 
+<style lang="scss">
+  @import "@styles/variables.scss";
+</style>
+*/
+// 布局配置
+$demo-width: 230px;
+
+// 颜色配置
+$main-color: red;
+$icon-background-color: #eee;
