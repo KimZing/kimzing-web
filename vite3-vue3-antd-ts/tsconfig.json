@@ -25,7 +25,11 @@
     // 跳过对 .d.ts 文件的类型检查
     "skipLibCheck": true,
     // 不生成ts编译的js文件
-    "noEmit": true
+    "noEmit": true,
+    // ts中别名设置,需与vite配置同步
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   // 通过 references 允许用户为项目的不同部分使用不同的 TypeScript 配置。

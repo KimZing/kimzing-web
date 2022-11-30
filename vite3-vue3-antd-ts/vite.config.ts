@@ -5,5 +5,11 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   // 配置环境文件的目录
-  envDir: 'env'
+  envDir: 'env',
+  resolve: {
+    // vite别名配置
+    alias: {
+      "@": "/src/"
+    }
+  }
 })
