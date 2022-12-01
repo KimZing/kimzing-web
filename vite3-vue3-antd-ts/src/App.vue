@@ -1,17 +1,28 @@
 <script setup lang="ts">
-console.log(123)
-const a = 'aaaa'
-const b = (aa) => console.log(aa)
-const ab = [1, 2, 3]
-console.log(a)
+defineEmits([ 'change' ])
+let a: number
+a = 1
+if(a === 1) {console.log(123)}
 
-const abc = function(i) {
-  console.log(i)
+const f = (a: any)=>console.log(a)
+f(123)
+
+const arr = [ 1, 2, 3 ]
+console.log(arr)
+
+const ob = { a:1, b:'2' }
+console.log(ob)
+
+const fu = function (an:string) {
+  console.log(an)
 }
+fu('aaa')
+
 </script>
 
 <template>
-  <a-switch></a-switch>
+  <a-switch />
+  <button />
 </template>
 
 <style scoped></style>

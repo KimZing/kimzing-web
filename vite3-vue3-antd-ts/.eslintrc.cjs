@@ -1,54 +1,58 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    node: true
-  },
-  extends: [
-    'plugin:vue/vue3-essential',
-    'standard-with-typescript'
-  ],
-  overrides: [
-  ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    // 讲道理eslint应该可以自动解析reference选项的，就不用配置两个了
-    // 有两个ts的配置，都需要配置，否则在检测vite.config.ts时是无法正确解析的
-    // project: ['./tsconfig.json']
-  },
-  plugins: [
-    'vue'
-  ],
-  rules: {
-    // 三条斜线的引入指令
-    "@typescript-eslint/triple-slash-reference": "off",
-    // 日志打印
-    'no-console': 'warn',
-    'no-debugger': 'warn',
-    // 只允许单引号
-    quotes: ['error', 'single'],
-    // 不允许结尾带分号
-    semi: ['error', 'never'],
-    // 箭头函数中的参数是否加括号
-    'arrow-parens': ['error', 'always'],
-    // 数组，对象行尾是否加逗号
-    'comma-dangle': [
-      'error',
-      {
-        arrays: 'never',
-        objects: 'never'
-      }
+    env: {
+        'browser': true,
+        'es2021': true,
+        'node': true
+    },
+    extends: [
+        'eslint:recommended',
+        'plugin:vue/vue3-recommended',
+        'plugin:@typescript-eslint/recommended'
     ],
-    // 是否添加逗号分隔元素之间的空格
-    'comma-spacing': ['error', {after: true}],
-    // 去除多余的空格
-    'no-trailing-spaces': 'error',
-    // 不允许多个空行, 设置最大空行为1
-    'no-multiple-empty-lines': ['error', {max: 1}],
-    // 函数括号前必须带空格
-    'space-before-function-paren': ['error', 'never'],
-    // 禁止未使用过的变量
-    'no-unused-vars': ['error', {vars: 'all', args: 'none', ignoreRestSiblings: false}]
-  }
+    overrides: [],
+    // 做了改写，vue-parser和ts-parser有冲突，参照https://eslint.vuejs.org/user-guide/
+    parser: 'vue-eslint-parser',
+    parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        parser: '@typescript-eslint/parser',
+    },
+    plugins: ['vue', '@typescript-eslint'],
+    rules: {
+        // 避免使用console
+        'no-console': 'warn',
+        // 使用两个空格
+        indent: ['error', 2],
+        // 指定vue文件中script标签内缩进两格
+        'vue/script-indent': ['error', 2, {'baseIndent': 0}],
+        // 使用单引号
+        quotes: ['error', 'single'],
+        // 不使用分号
+        semi: ['error', 'never'],
+        // 换行符使用unix
+        'linebreak-style': ['error', 'unix'],
+        // 不允许未使用的变量
+        'no-unused-vars': 'error',
+        // 箭头函数中的参数必须加括号
+        'arrow-parens': ['error', 'always'],
+        // 数组，对象行尾是否加逗号
+        'comma-dangle': ['error', {'arrays': 'never', 'objects': 'never'}],
+        // 逗号分隔元素之间加空格
+        'comma-spacing': ['error', {'after': true}],
+        // 去除多余的空格
+        'no-trailing-spaces': 'error',
+        // 不允许多个空行, 设置最大空行为1
+        'no-multiple-empty-lines': ['error', {'max': 1}],
+        // 数组头部尾部必须添加空格
+        'array-bracket-spacing': ['error', 'always'],
+        // 对象体头部尾部必须添加空格
+        'object-curly-spacing': ['error', 'always'],
+        // 函数括号前必须带空格
+        'space-before-function-paren': ['error', 'always'],
+        //  不允许多个空格出现在一起
+        'no-multi-spaces': 'error',
+        // 要求操作符周围有空格
+        'space-infix-ops': 'error',
+        'space-before-blocks': 'error'
+    }
 }
