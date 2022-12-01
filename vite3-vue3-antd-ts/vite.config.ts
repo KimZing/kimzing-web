@@ -10,9 +10,12 @@ export default defineConfig({
     open: true
   },
   resolve: {
-    // vite别名配置
+    // vite别名配置，当vite本地运行时，需要用此配置解析
     alias: {
-      '@': '/src/'
+      '@': '/src/',
+      'plugins': '/src/plugins',
+      'utils': '/src/utils',
+      'models': '/src/models'
     }
   }
 })

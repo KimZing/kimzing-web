@@ -28,9 +28,12 @@
     "noEmit": true,
     // 查找模块的路径，相对于tsconfig文件的位置寻找，下面的路径别名需要基于此配置
     "baseUrl": ".",
-    // ts中别名设置,需与vite配置同步
+    // ts中别名设置,在ts进行编译时需要用此来解析(同时要在vite中配置)
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "plugins/*": ["src/plugins/*"],
+      "utils/*": ["src/utils/*"],
+      "models/*": ["src/models/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
