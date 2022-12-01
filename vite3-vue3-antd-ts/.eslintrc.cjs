@@ -58,6 +58,8 @@ module.exports = {
         // 箭头函数前后加空格
         'arrow-spacing': 'error',
         // 屏蔽vite.d.ts文件中采用的任意类型问题
-        "@typescript-eslint/ban-types": "off"
+        "@typescript-eslint/ban-types": "off",
+        // 允许使用any类型
+        "@typescript-eslint/no-explicit-any": "off"
     }
 }
