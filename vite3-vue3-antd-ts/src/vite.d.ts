@@ -8,7 +8,6 @@ declare module '*.vue' {
   export default component
 }
 
-
 // 添加env文件的智能提示支持
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string
