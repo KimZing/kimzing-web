@@ -53,6 +53,9 @@ module.exports = {
         'no-multi-spaces': 'error',
         // 要求操作符周围有空格
         'space-infix-ops': 'error',
-        'space-before-blocks': 'error'
+        // 块元素前面要加空格
+        'space-before-blocks': 'error',
+        // 箭头函数前后加空格
+        'arrow-spacing': 'error'
     }
 }
