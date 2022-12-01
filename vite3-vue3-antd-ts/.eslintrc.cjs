@@ -31,8 +31,8 @@ module.exports = {
         semi: ['error', 'never'],
         // 换行符使用unix
         'linebreak-style': ['error', 'unix'],
-        // 不允许未使用的变量
-        'no-unused-vars': 'error',
+        // 既可以使用no-unused-vars检测未使用变量的功能，也可以解决TypeScript接口抛出“ no-unused-vars”报错。
+        '@typescript-eslint/no-unused-vars': 'error',
         // 箭头函数中的参数必须加括号
         'arrow-parens': ['error', 'always'],
         // 数组，对象行尾是否加逗号
@@ -60,6 +60,8 @@ module.exports = {
         // 屏蔽vite.d.ts文件中采用的任意类型问题
         "@typescript-eslint/ban-types": "off",
         // 允许使用any类型
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        // 允许组件名称命名为单个单词
+        "vue/multi-word-component-names": "off",
     }
 }

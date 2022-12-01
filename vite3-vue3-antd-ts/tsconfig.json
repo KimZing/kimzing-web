@@ -37,6 +37,8 @@
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
+  // 排除的文件
+  "exclude": ["node_modules", "dist"],
   // 通过 references 允许用户为项目的不同部分使用不同的 TypeScript 配置。
   // 通过 references 字段引入 tsconfig.vite.json 中的配置。
   "references": [{ "path": "./tsconfig.vite.json" }]
