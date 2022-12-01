@@ -1,13 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import notice from 'utils/notice'
-
-// 后端通用响应体
-interface Response<T> {
-  timestamp: number
-  code: string
-  message?: string
-  data?: T
-}
+import { Response } from 'models/common'
 
 // 定义请求接口
 interface IHttp {
@@ -33,33 +26,33 @@ interface ResponseFailHook {
 class Http implements IHttp {
   private instance: AxiosInstance
 
-  constructor (config: AxiosRequestConfig) {
+  constructor(config: AxiosRequestConfig) {
     this.instance = axios.create(config)
   }
 
-  get<R, E = {}> (url: string, params?: E): Promise<R> {
+  get<R, E = {}>(url: string, params?: E): Promise<R> {
     return this.instance.request({ url, method: 'GET', params })
   }
 
-  post<R, E1 = {}, E2 = {}> (url: string, data: E1, params?: E2): Promise<R> {
+  post<R, E1 = {}, E2 = {}>(url: string, data: E1, params?: E2): Promise<R> {
     return this.instance.request({ url, method: 'POST', params, data })
   }
 
-  put<R, E1 = {}, E2 = {}> (url: string, data: E1, params?: E2): Promise<R> {
+  put<R, E1 = {}, E2 = {}>(url: string, data: E1, params?: E2): Promise<R> {
     return this.instance.request({ url, method: 'PUT', params, data })
   }
 
-  delete<R, E = {}> (url: string, params?: E): Promise<R> {
+  delete<R, E = {}>(url: string, params?: E): Promise<R> {
     return this.instance.request({ url, method: 'DELETE', params })
   }
 
   // 设置请求拦截器
-  hookOnRequest (hook: RequestHook): void {
+  hookOnRequest(hook: RequestHook): void {
     this.instance.interceptors.request.use(hook)
   }
 
   // 设置响应拦截器
-  hookOnResponse (success: ResponseSuccessHook, fail: ResponseFailHook): void {
+  hookOnResponse(success: ResponseSuccessHook, fail: ResponseFailHook): void {
     this.instance.interceptors.response.use(success, fail)
   }
 }

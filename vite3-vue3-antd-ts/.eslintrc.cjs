@@ -48,7 +48,7 @@ module.exports = {
         // 对象体头部尾部必须添加空格
         'object-curly-spacing': ['error', 'always'],
         // 函数括号前必须带空格
-        'space-before-function-paren': ['error', 'always'],
+        // 'space-before-function-paren': ['error', 'always'],
         //  不允许多个空格出现在一起
         'no-multi-spaces': 'error',
         // 要求操作符周围有空格
