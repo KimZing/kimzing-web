@@ -4,16 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "#运行": "以不同模式运行",
+    "#运行": "运行不同模式",
     "dev": "vite serve --mode development",
-    "dev": "vite serve --mode production",
-    "#构建": "以不同模式构建",
-    "build": "vue-tsc && vite build --mode development",
-    "build": "vue-tsc && vite build --mode production",
-    "#预览": "预览打包内容",
-    "preview": "vite preview",
-    "#检查": "检查代码并修复",
-    "lint": "eslint --ext .ts --ext .vue src"
+    "pro": "vite serve --mode production",
+    "#构建": "打包不同模式",
+    "build:dev": "vue-tsc && vite build --mode development",
+    "build:pro": "vue-tsc && vite build --mode production",
+    "#预览": "预览不同模式",
+    "preview:dev": "vite build --mode development && vite preview",
+    "preview:pro": "vite build --mode production && vite preview",
+    "#检查": "检查修复代码",
+    "lint": "eslint --fix \"src/**/*.{vue,ts,tsx}\" "
   },
   "dependencies": {
     "ant-design-vue": "^3.2.15",
