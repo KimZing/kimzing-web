@@ -56,6 +56,8 @@ module.exports = {
         // 块元素前面要加空格
         'space-before-blocks': 'error',
         // 箭头函数前后加空格
-        'arrow-spacing': 'error'
+        'arrow-spacing': 'error',
+        // 屏蔽vite.d.ts文件中采用的任意类型问题
+        "@typescript-eslint/ban-types": "off"
     }
 }

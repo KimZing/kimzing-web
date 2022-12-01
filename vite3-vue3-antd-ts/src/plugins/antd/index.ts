@@ -3,7 +3,7 @@ import 'ant-design-vue/dist/antd.css'
 import { App } from 'vue'
 
 export default{
-  install (app: App, ...options: any[]) {
+  install (app: App) {
     app.use(Antd)
   }
 }
