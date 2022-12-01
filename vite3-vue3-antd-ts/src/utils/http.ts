@@ -87,8 +87,9 @@ const responseSuccessHook = (response: AxiosResponse<Response<any>>) => {
   if (code === '0') {
     return data
   }
+
+  // 如果存在code码说明返回包含了标准的错误结构体
   if (code) {
-    // 如果存在code码说明返回包含了标准的错误结构体
     notice.error(code, message)
     return Promise.reject()
   }

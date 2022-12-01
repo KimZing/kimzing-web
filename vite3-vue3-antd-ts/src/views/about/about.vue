@@ -1,8 +1,6 @@
 <template>
   About
-  <a-button @click="goHome">
-    跳转Home
-  </a-button>
+  <a-button @click="goHome"> 跳转Home </a-button>
 </template>
 
 <script setup lang="ts">
@@ -15,6 +13,4 @@ const goHome = () => {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
