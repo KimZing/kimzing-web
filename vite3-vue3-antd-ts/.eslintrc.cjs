@@ -1,3 +1,4 @@
+// 其中有很多格式化规则和prettier是重复的，这里就不做集成了，保证兼容就行
 module.exports = {
     env: {
         'browser': true,
@@ -43,11 +44,11 @@ module.exports = {
         'no-trailing-spaces': 'error',
         // 不允许多个空行, 设置最大空行为1
         'no-multiple-empty-lines': ['error', {'max': 1}],
-        // 数组头部尾部必须添加空格
+        // 数组头部尾部必须添加空格(prettier不存在), const a = [1, 2]
         // 'array-bracket-spacing': ['error', 'always'],
         // 对象体头部尾部必须添加空格
         'object-curly-spacing': ['error', 'always'],
-        // 函数括号前必须带空格
+        // 函数括号前必须带空格(prettier不存在) const a = function b() {}
         // 'space-before-function-paren': ['error', 'always'],
         //  不允许多个空格出现在一起
         'no-multi-spaces': 'error',
