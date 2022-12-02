@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   // 添加对vue的支持插件，注意需要在devDependencies中引入@vitejs/plugin-vue
-  plugins: [ vue() ],
+  plugins: [vue()],
   // 开发或生产环境服务的公共基础路径
   base: '/',
   // 静态资源文件夹
@@ -50,10 +50,7 @@ export default defineConfig({
   resolve: {
     // vite别名配置，当vite本地运行时，需要用此配置解析
     alias: {
-      '@': '/src/',
-      'plugins': '/src/plugins',
-      'utils': '/src/utils',
-      'models': '/src/models'
+      '@': '/src/'
     }
   },
   json: {

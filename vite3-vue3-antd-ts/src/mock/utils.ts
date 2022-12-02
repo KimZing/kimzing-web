@@ -1,6 +1,6 @@
-import { Response } from 'models/common'
+import { Response } from '@/models/common'
 import Mock from 'mockjs'
-import notice from 'utils/notice'
+import notice from '@/utils/notice'
 
 function createResponse<T>(data: T): Response<T> {
   return {

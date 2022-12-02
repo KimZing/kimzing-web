@@ -1,13 +1,13 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import notice from 'utils/notice'
-import { Response } from 'models/common'
+import notice from '@/utils/notice'
+import { Response } from '@/models/common'
 
 // 定义请求接口
 interface IHttp {
-  get<R, E = {}>(url: string, params?: E): Promise<R>
-  post<R, E1 = {}, E2 = {}>(url: string, data: E1, params?: E2): Promise<R>
-  put<R, E1 = {}, E2 = {}>(url: string, data: E1, params?: E2): Promise<R>
-  delete<R, E = {}>(url: string, params?: E): Promise<R>
+  get<R>(url: string, params?: object): Promise<R>
+  post<R>(url: string, data: object, params?: object): Promise<R>
+  put<R>(url: string, data: object, params?: object): Promise<R>
+  delete<R>(url: string, params?: object): Promise<R>
 }
 
 interface RequestHook {
@@ -30,19 +30,19 @@ class Http implements IHttp {
     this.instance = axios.create(config)
   }
 
-  get<R, E = {}>(url: string, params?: E): Promise<R> {
+  get<R>(url: string, params?: object): Promise<R> {
     return this.instance.request({ url, method: 'GET', params })
   }
 
-  post<R, E1 = {}, E2 = {}>(url: string, data: E1, params?: E2): Promise<R> {
+  post<R>(url: string, data: object, params?: object): Promise<R> {
     return this.instance.request({ url, method: 'POST', params, data })
   }
 
-  put<R, E1 = {}, E2 = {}>(url: string, data: E1, params?: E2): Promise<R> {
+  put<R>(url: string, data: object, params?: object): Promise<R> {
     return this.instance.request({ url, method: 'PUT', params, data })
   }
 
-  delete<R, E = {}>(url: string, params?: E): Promise<R> {
+  delete<R>(url: string, params?: object): Promise<R> {
     return this.instance.request({ url, method: 'DELETE', params })
   }
 
@@ -63,9 +63,7 @@ const http = new Http({
   // 请求URL
   baseURL: import.meta.env.VITE_BASE_URL,
   // 超时时间
-  timeout: 5000,
-  // 错误处理
-  validateStatus: (status: number) => status <= 500
+  timeout: 5000
 })
 
 // 这里利用泛型，约束了项目定义的标准返回值
@@ -101,8 +99,8 @@ const responseFailHook = (error: any) => {
 http.hookOnResponse(responseSuccessHook, responseFailHook)
 
 const requestHook = (config: AxiosRequestConfig) => {
-  // 设置Header中的Token
-  config.headers!.Authorization = 'S123'
+  // MARK 设置Header中的Token
+  config.headers!.Authorization = 'TOKEN'
   return config
 }
 

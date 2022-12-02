@@ -44,7 +44,7 @@ module.exports = {
         // 不允许多个空行, 设置最大空行为1
         'no-multiple-empty-lines': ['error', {'max': 1}],
         // 数组头部尾部必须添加空格
-        'array-bracket-spacing': ['error', 'always'],
+        // 'array-bracket-spacing': ['error', 'always'],
         // 对象体头部尾部必须添加空格
         'object-curly-spacing': ['error', 'always'],
         // 函数括号前必须带空格

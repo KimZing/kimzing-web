@@ -30,13 +30,10 @@
     "baseUrl": ".",
     // ts中别名设置,在ts进行编译时需要用此来解析(同时要在vite中配置)
     "paths": {
-      "@/*": ["src/*"],
-      "plugins/*": ["src/plugins/*"],
-      "utils/*": ["src/utils/*"],
-      "models/*": ["src/models/*"]
+      "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   // 排除的文件
   "exclude": ["node_modules", "dist"],
   // 通过 references 允许用户为项目的不同部分使用不同的 TypeScript 配置。
