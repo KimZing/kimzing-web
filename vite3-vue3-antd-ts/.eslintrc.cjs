@@ -64,5 +64,7 @@ module.exports = {
         "@typescript-eslint/no-explicit-any": "off",
         // 允许组件名称命名为单个单词
         "vue/multi-word-component-names": "off",
+        // 允许可能返回为空的元素时，强制使用!确定为非空   document.getElementById(props.id)!
+        "@typescript-eslint/no-non-null-assertion": "off"
     }
 }
