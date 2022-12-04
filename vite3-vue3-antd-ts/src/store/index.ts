@@ -1,4 +1,4 @@
-import { createStore, Store } from 'vuex'
+import { createStore, Store, useStore as baseUseStore } from 'vuex'
 import { InjectionKey } from 'vue'
 
 export interface State {
@@ -7,7 +7,7 @@ export interface State {
 
 export const key: InjectionKey<Store<State>> = Symbol()
 
-const store = createStore({
+export const store = createStore({
   state() {
     return {
       title: 'Vite3 Vue3 Antd TS',
@@ -17,4 +17,6 @@ const store = createStore({
   mutations: {}
 })
 
-export default store
+export function useStore() {
+  return baseUseStore(key)
+}

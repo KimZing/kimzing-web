@@ -5,11 +5,10 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from 'vuex'
-import { key } from '@/store'
+import { useStore } from '@/store'
 import { computed } from 'vue'
 
-let store = useStore(key)
+let store = useStore()
 
 const title = computed(() => store.state.title)
 </script>
