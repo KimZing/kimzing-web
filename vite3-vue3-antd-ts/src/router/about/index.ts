@@ -6,7 +6,7 @@ const aboutRouter: RouteRecordRaw = {
   meta: {
     title: '关于',
     menu: true,
-    icon: ''
+    icon: 'MailOutlined'
   },
   component: About
 }

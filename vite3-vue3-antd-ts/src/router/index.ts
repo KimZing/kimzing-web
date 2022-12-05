@@ -17,14 +17,14 @@ declare module 'vue-router' {
   }
 }
 
-const children: RouteRecordRaw[] = []
-children.push(homeRouter)
-children.push(aboutRouter)
+export const routes: RouteRecordRaw[] = []
+routes.push(homeRouter)
+routes.push(aboutRouter)
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    { path: '/', redirect: '/home', component: Layout, children },
+    { path: '/', redirect: '/home', component: Layout, children: routes },
     { path: '/:pathMatch(.*)*', component: Error404 }
   ]
 })

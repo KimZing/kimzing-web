@@ -1,46 +1,27 @@
 <template>
   <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-    <a-menu-item key="1">
-      <pie-chart-outlined />
-      <span>Option 1</span>
-    </a-menu-item>
-    <a-menu-item key="2">
-      <desktop-outlined />
-      <span>Option 2</span>
-    </a-menu-item>
-    <a-sub-menu key="sub1">
-      <template #title>
-        <span>
-          <user-outlined />
-          <span>User</span>
-        </span>
+    <template v-for="route in routes" :key="route.path">
+      <template v-if="route.meta.menu && !route.children">
+        <a-menu-item :key="route.path">
+          <template #icon>
+            <component :is="$icons[route.meta.icon]" />
+          </template>
+          {{ route.meta.title }}
+        </a-menu-item>
       </template>
-      <a-menu-item key="3"> Tom </a-menu-item>
-      <a-menu-item key="4"> Bill </a-menu-item>
-      <a-menu-item key="5"> Alex </a-menu-item>
-    </a-sub-menu>
-    <a-sub-menu key="sub2">
-      <template #title>
-        <span>
-          <team-outlined />
-          <span>Team</span>
-        </span>
+      <template v-else>
+        <SubMenu :key="route.path" :route="route" />
       </template>
-      <a-menu-item key="6"> Team 1 </a-menu-item>
-      <a-menu-item key="8"> Team 2 </a-menu-item>
-    </a-sub-menu>
-    <a-menu-item key="9">
-      <file-outlined />
-      <span>File</span>
-    </a-menu-item>
+    </template>
   </a-menu>
 </template>
 
 <script lang="ts" setup>
-import { PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined, FileOutlined } from '@ant-design/icons-vue'
 import { ref } from 'vue'
+import { routes } from '@/router'
+import SubMenu from '@/layout/sidebar/menus/sub/sub-menu.vue'
 
-const selectedKeys = ref<string[]>(['1'])
+const selectedKeys = ref<string[]>(['/'])
 </script>
 
 <style scoped></style>

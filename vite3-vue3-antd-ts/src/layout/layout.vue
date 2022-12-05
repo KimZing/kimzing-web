@@ -1,7 +1,8 @@
 <template>
   <a-layout class="layout-container">
-    <a-layout-sider v-model:collapsed="collapsed" collapsible>
-      <Sidebar />
+    <a-layout-sider v-model:collapsed="collapse" collapsible width="230px">
+      <Logo :collapse="collapse" />
+      <Menus />
     </a-layout-sider>
     <a-layout>
       <a-layout-header class="header-box">
@@ -15,11 +16,12 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import Sidebar from '@/layout/sidebar/sidebar.vue'
 import Header from '@/layout/header/header.vue'
 import Content from '@/layout/content/content.vue'
+import Logo from '@/layout/sidebar/logo/logo.vue'
+import Menus from '@/layout/sidebar/menus/menus.vue'
 
-const collapsed = ref<boolean>(false)
+const collapse = ref<boolean>(false)
 </script>
 
 <style scoped>

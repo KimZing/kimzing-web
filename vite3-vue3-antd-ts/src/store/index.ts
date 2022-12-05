@@ -10,8 +10,7 @@ export const key: InjectionKey<Store<State>> = Symbol()
 export const store = createStore({
   state() {
     return {
-      title: 'Vite3 Vue3 Antd TS',
-      test: 123
+      title: 'Vite3 Vue3 Antd TS'
     }
   },
   mutations: {}
