@@ -3,7 +3,7 @@ import 'vue-router'
 import Layout from '@/layout/layout.vue'
 import homeRouter from '@/router/home'
 import aboutRouter from '@/router/about'
-import Error404 from '@/views/error/404.vue'
+import Error404 from '@/components/error/404.vue'
 
 // 扩展路由中的meta类型
 declare module 'vue-router' {
