@@ -7,7 +7,7 @@ export interface State {
 
 export const key: InjectionKey<Store<State>> = Symbol()
 
-export const store = createStore({
+export const store = createStore<State>({
   state() {
     return {
       title: 'Vite3 Vue3 Antd TS'
