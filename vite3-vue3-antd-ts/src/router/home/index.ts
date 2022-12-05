@@ -8,18 +8,7 @@ const homeRouter: RouteRecordRaw = {
     menu: true,
     icon: 'PieChartOutlined'
   },
-  component: Home,
-  children: [
-    {
-      path: '/home2',
-      meta: {
-        title: '仪表板',
-        menu: true,
-        icon: 'PieChartOutlined'
-      },
-      component: Home
-    }
-  ]
+  component: Home
 }
 
 export default homeRouter
