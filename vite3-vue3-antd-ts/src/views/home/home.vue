@@ -1,5 +1,6 @@
 <template>
   Home
+  <div v-for="i in 100" :key="i"> aaa </div>
   <a-button @click="goAbout"> 跳转About </a-button>
 </template>
 

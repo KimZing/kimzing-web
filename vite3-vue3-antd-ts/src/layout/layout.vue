@@ -31,5 +31,6 @@ const collapse = ref<boolean>(false)
 }
 .header-box {
   padding: 0;
+  height: 64px;
 }
 </style>
