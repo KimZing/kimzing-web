@@ -1,5 +1,5 @@
 <template>
-  <a-sub-menu :key="route.path">
+  <SubMenu :key="route.path">
     <template #icon>
       <component :is="$icons[route.meta.icon]" />
     </template>
@@ -16,13 +16,14 @@
         </a-menu-item>
       </template>
       <template v-else>
-        <sub-menu :key="item.path" :route="item" />
+        <sub-menus :key="item.path" :route="item" />
       </template>
     </template>
-  </a-sub-menu>
+  </SubMenu>
 </template>
 <script setup lang="ts">
 import { RouteRecordRaw } from 'vue-router'
+import { SubMenu } from 'ant-design-vue'
 
 defineProps<{
   route: RouteRecordRaw

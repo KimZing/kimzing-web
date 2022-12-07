@@ -30,7 +30,7 @@ const router = createRouter({
 })
 
 // 导航守卫 参数(to: 要进入的路由 from: 要离开的路由)  返回值(正常路由: true,undefined  指定路由: {name: Login}  取消路由: false)
-router.beforeEach(async () => {
+router.beforeEach(async() => {
   return true
 })
 

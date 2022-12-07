@@ -20,8 +20,6 @@ module.exports = {
     },
     plugins: ['vue', '@typescript-eslint'],
     rules: {
-        // 单行最大长度,忽略注释、URL等
-        'max-len': ['error', {code: 80, ignoreComments: true, ignoreTrailingComments: true, ignoreUrls: true}],
         // 避免使用console
         'no-console': 'warn',
         // 使用两个空格
@@ -30,6 +28,8 @@ module.exports = {
         '@typescript-eslint/indent': ['error', 2],
         // 指定vue文件中script标签内缩进两格 vue文件
         'vue/script-indent': ['error', 2, {'baseIndent': 0}],
+        // 指定vue文件中标签在一行或多行中的属性数量
+        'vue/max-attributes-per-line': ['error', {singleline: {max: 5}, multiline: {max: 5}}],
         // 使用单引号
         quotes: ['error', 'single'],
         // 不使用分号
@@ -63,12 +63,12 @@ module.exports = {
         // 箭头函数前后加空格
         'arrow-spacing': 'error',
         // 屏蔽vite.d.ts文件中采用的任意类型问题
-        "@typescript-eslint/ban-types": "off",
+        '@typescript-eslint/ban-types': 'off',
         // 允许使用any类型
-        "@typescript-eslint/no-explicit-any": "off",
+        '@typescript-eslint/no-explicit-any': 'off',
         // 允许组件名称命名为单个单词
-        "vue/multi-word-component-names": "off",
+        'vue/multi-word-component-names': 'off',
         // 允许可能返回为空的元素时，强制使用!确定为非空   document.getElementById(props.id)!
-        "@typescript-eslint/no-non-null-assertion": "off"
+        '@typescript-eslint/no-non-null-assertion': 'off'
     }
 }

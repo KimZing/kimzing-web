@@ -1,5 +1,7 @@
 <template>
-  <div class="navbar-container"> navibar </div>
+  <div class="navbar-container">
+    navibar
+  </div>
 </template>
 
 <script setup lang="ts"></script>

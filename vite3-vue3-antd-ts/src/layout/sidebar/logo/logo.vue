@@ -1,6 +1,6 @@
 <template>
   <div class="logo-container">
-    <img class="image" :src="Logo" />
+    <img alt="logo" class="image" :src="Logo">
     <div v-if="!collapse" class="title">
       {{ title }}
     </div>

@@ -1,20 +1,21 @@
 <template>
-  <a-layout class="layout-container">
-    <a-layout-sider v-model:collapsed="collapse" collapsible width="230px">
+  <Layout class="layout-container">
+    <LayoutSider v-model:collapsed="collapse" collapsible width="230px">
       <Logo :collapse="collapse" />
       <Menus />
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-header class="header-box">
+    </LayoutSider>
+    <Layout>
+      <LayoutHeader class="header-box">
         <Header />
-      </a-layout-header>
-      <a-layout-content class="full-height">
+      </LayoutHeader>
+      <LayoutContent class="full-height">
         <Content />
-      </a-layout-content>
-    </a-layout>
-  </a-layout>
+      </LayoutContent>
+    </Layout>
+  </Layout>
 </template>
 <script setup lang="ts">
+import { Layout, LayoutContent, LayoutHeader, LayoutSider } from 'ant-design-vue'
 import { ref } from 'vue'
 import Header from '@/layout/header/header.vue'
 import Content from '@/layout/content/content.vue'
