@@ -20,11 +20,15 @@ module.exports = {
     },
     plugins: ['vue', '@typescript-eslint'],
     rules: {
+        // 单行最大长度,忽略注释、URL等
+        'max-len': ['error', {code: 80, ignoreComments: true, ignoreTrailingComments: true, ignoreUrls: true}],
         // 避免使用console
         'no-console': 'warn',
         // 使用两个空格
         indent: ['error', 2],
-        // 指定vue文件中script标签内缩进两格
+        // typescript文件中的缩进  ts文件
+        '@typescript-eslint/indent': ['error', 2],
+        // 指定vue文件中script标签内缩进两格 vue文件
         'vue/script-indent': ['error', 2, {'baseIndent': 0}],
         // 使用单引号
         quotes: ['error', 'single'],
@@ -32,7 +36,7 @@ module.exports = {
         semi: ['error', 'never'],
         // 换行符使用unix
         'linebreak-style': ['error', 'unix'],
-        // 既可以使用no-unused-vars检测未使用变量的功能，也可以解决TypeScript接口抛出“ no-unused-vars”报错。
+        // 既可以实现no-unused-vars检测未使用变量的功能，也可以解决TypeScript接口抛出“ no-unused-vars”报错。
         '@typescript-eslint/no-unused-vars': 'error',
         // 箭头函数中的参数必须加括号
         'arrow-parens': ['error', 'always'],
@@ -44,13 +48,13 @@ module.exports = {
         'no-trailing-spaces': 'error',
         // 不允许多个空行, 设置最大空行为1
         'no-multiple-empty-lines': ['error', {'max': 1}],
-        // 数组头部尾部必须添加空格(prettier不存在), const a = [1, 2]
-        // 'array-bracket-spacing': ['error', 'always'],
+        // 数组头部尾部必须添加空格, const a = [1, 2] => const a = [ 1, 2 ]
+        'array-bracket-spacing': ['error', 'always'],
         // 对象体头部尾部必须添加空格
         'object-curly-spacing': ['error', 'always'],
-        // 函数括号前必须带空格(prettier不存在) const a = function b() {}
-        // 'space-before-function-paren': ['error', 'always'],
-        //  不允许多个空格出现在一起
+        // 函数括号前不要加空格 const a = function b () {} => function b() {}
+        'space-before-function-paren': ['error', 'never'],
+        // 不允许多个空格出现在一起
         'no-multi-spaces': 'error',
         // 要求操作符周围有空格
         'space-infix-ops': 'error',
