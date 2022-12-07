@@ -30,6 +30,8 @@ module.exports = {
         'vue/script-indent': ['error', 2, {'baseIndent': 0}],
         // 指定vue文件中标签在一行或多行中的属性数量
         'vue/max-attributes-per-line': ['error', {singleline: {max: 5}, multiline: {max: 5}}],
+        // 对于一些标签是否进行闭合
+        'vue/html-self-closing': ['error', {html: {void: 'always', normal: 'always', component: 'always'}}],
         // 使用单引号
         quotes: ['error', 'single'],
         // 不使用分号
